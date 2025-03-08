@@ -1,4 +1,4 @@
 <picture>
-  <source srcset="https://raw.githubusercontent.com/mmazinjameel/mmazinjameel/main/dark_mode.svg?v=1741442802" media="(prefers-color-scheme: dark)">
-  <img src="https://raw.githubusercontent.com/mmazinjameel/mmazinjameel/main/light_mode.svg?v=1741442802">
+  <source srcset="https://raw.githubusercontent.com/mmazinjameel/mmazinjameel/main/dark_mode.svg?v=1741450095" media="(prefers-color-scheme: dark)">
+  <img src="https://raw.githubusercontent.com/mmazinjameel/mmazinjameel/main/light_mode.svg?v=1741450095">
 </picture>
