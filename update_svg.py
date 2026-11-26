@@ -83,20 +83,29 @@ def update_svg_file(svg_file, num_repos, num_commits, total_loc, uptime):
     with open(svg_file, 'w', encoding='utf-8') as file:
         file.write(svg_content)
 
+
 def update_readme():
-    """Automatically updates README.md to force fresh SVG load"""
-    timestamp = int(time.time())  # Get current timestamp
+    """Refresh SVG image URLs to bypass cached README images."""
+    timestamp = int(time.time())
 
     with open(README_FILE, "r", encoding="utf-8") as file:
         content = file.read()
 
-    # Replace old timestamp with the new one
-    content = re.sub(r"(\?v=)[0-9]+", f"?v={timestamp}", content)
+    # Update cache-busting timestamps in SVG URLs
+    content, count = re.subn(
+        r'([?&]v=)\d+',
+        lambda match: match.group(1) + str(timestamp),
+        content
+    )
+
+    if count == 0:
+        print("WARNING: No SVG cache-busting URLs found in README.md")
+    else:
+        print(f"Updated {count} SVG image URLs with timestamp {timestamp}")
 
     with open(README_FILE, "w", encoding="utf-8") as file:
         file.write(content)
 
-    print(f"README.md updated with timestamp {timestamp}")
 
 def main():
     num_repos, num_commits, total_loc = fetch_github_stats(GITHUB_USERNAME)
